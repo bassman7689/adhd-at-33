@@ -13,15 +13,15 @@ const gatsbyRequiredRules = path.join(
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `ADHD at 33`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: "https://www.adhdat33.com",
     menuLinks: [
       {
         title: "Home",
         link: "/",
       },
       {
-        title: "Typegen",
-        link: "/typegen/",
+        title: "About",
+        link: "/about/",
       },
     ],
   },
