@@ -1,8 +1,13 @@
-import * as React from "react"
-import { graphql, PageProps } from "gatsby"
-import { withPageLayout } from "../components/with-page-layout"
+import * as React from "react";
+import { graphql, PageProps } from "gatsby";
+import { withPageLayout } from "../components/with-page-layout";
 
-const TypegenPage = ({location, data }: PageProps<Queries.TypegenPageQuery>) => {
+const TypegenPage = ({
+  data,
+}: PageProps<Queries.TypegenPageQuery>): React.ReactElement<
+  any,
+  any
+> | null => {
   return (
     <React.Fragment>
       <p>Site title: {data.site?.siteMetadata?.title}</p>
@@ -12,10 +17,10 @@ const TypegenPage = ({location, data }: PageProps<Queries.TypegenPageQuery>) => 
         <code>{JSON.stringify(data, null, 2)}</code>
       </pre>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default withPageLayout(TypegenPage)
+export default withPageLayout(TypegenPage);
 
 export const query = graphql`
   query TypegenPage {
@@ -25,4 +30,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

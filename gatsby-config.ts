@@ -1,4 +1,14 @@
-import type { GatsbyConfig } from "gatsby"
+import path from "path";
+import type { GatsbyConfig } from "gatsby";
+
+const gatsbyRequiredRules = path.join(
+  __dirname,
+  "node_modules",
+  "gatsby",
+  "dist",
+  "utils",
+  "eslint-rules"
+);
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -6,16 +16,12 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`,
     menuLinks: [
       {
-        title: 'Home',
-        link: '/',
+        title: "Home",
+        link: "/",
       },
       {
-        title: 'Typegen',
-        link: '/typegen/'
-      },
-      {
-        title: 'Blog',
-        link: '/blog/'
+        title: "Typegen",
+        link: "/typegen/",
       },
     ],
   },
@@ -24,17 +30,27 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-styled-components",
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'blog',
+        name: "blog",
         path: `${__dirname}/src/blog`,
       },
     },
-    'gatsby-transformer-remark',
+    "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-plugin-eslint",
+      options: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        rulePaths: [gatsbyRequiredRules],
+        stages: ["develop"],
+        extensions: ["js", "jsx", "ts", "tsx"],
+        exclude: ["node_modules", "bower_components", ".cache", "public"],
+      },
+    },
   ],
-}
+};
 
-export default config
+export default config;
