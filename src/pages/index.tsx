@@ -8,6 +8,7 @@ type BlogEntrySummaryProps = {
     date: string | null;
     slug: string | null;
     title: string | null;
+    published: boolean | null;
   } | null;
   excerpt: string | null;
 };
@@ -17,8 +18,8 @@ const BlogEntrySummary = ({ frontmatter, excerpt }: BlogEntrySummaryProps) => {
     return null;
   }
 
-  const { date, slug, title } = frontmatter;
-  if (!date || !slug || !title) return null;
+  const { date, slug, title, published } = frontmatter;
+  if (!date || !slug || !title || !published) return null;
 
   return (
     <div>

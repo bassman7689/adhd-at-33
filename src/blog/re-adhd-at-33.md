@@ -2,6 +2,8 @@
 author: Sean Rodman
 date: 2022-07-24
 title: "RE: ADHD at 33"
+slug: re-adhd-at-33
+published: false
 ---
   I was diagnosed with ADHD at 8 years old. However, the only thing that I really learned
   from that was that I had it and I needed to take some medication. I took Ritalin at first,

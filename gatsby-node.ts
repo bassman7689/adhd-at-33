@@ -1,12 +1,12 @@
-import path from "path"
-import { BlogPostQueryResult } from "./src/types"
-import { GatsbyNode } from "gatsby"
-import { blogPath } from "./src/utils/blog-path"
+import path from "path";
+import { BlogPostQueryResult } from "./src/types";
+import { GatsbyNode } from "gatsby";
+import { blogPath } from "./src/utils/blog-path";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions,
-  reporter
+  reporter,
 }) => {
   const { createPage } = actions;
 
@@ -20,6 +20,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
             date
             slug
             title
+            published
           }
           excerpt
         }
@@ -28,15 +29,17 @@ export const createPages: GatsbyNode["createPages"] = async ({
   `);
 
   if (blogPosts.error) {
-    reporter.panicOnBuild(`Error while running GraphQL query: ${blogPosts.error}`)
-    return
+    reporter.panicOnBuild(
+      `Error while running GraphQL query: ${blogPosts.error}`
+    );
+    return;
   }
 
-  const blogLayout = path.resolve('src/components/blog-layout.tsx')
+  const blogLayout = path.resolve("src/components/blog-layout.tsx");
 
   blogPosts?.data?.allMarkdownRemark?.nodes?.forEach((node) => {
-    const { date, slug } = node.frontmatter;
-    if (!slug) return;
+    const { date, slug, published } = node.frontmatter;
+    if (!slug || !published) return;
 
     const path = blogPath(date, slug);
     reporter.info(`path: ${path}`);
@@ -44,8 +47,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
       path: path,
       component: blogLayout,
       context: {
-        node: {...node, slug: path},
+        node: { ...node, slug: path },
       },
     });
   });
-}
+};

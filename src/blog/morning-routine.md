@@ -3,6 +3,7 @@ author: Sean Rodman
 date: 2022-07-22
 title: "Morning routine"
 slug: morning-routine
+published: false
 ---
   I have been thinking a lot about writing all of this down. Keeping track of
   the things that I do to make life easier. Things that I figure out to help
