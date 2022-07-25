@@ -14,11 +14,15 @@ const AuthorHeader = styled.div`
   color: #888;
 `;
 
-const Template = ({
+const BlogTemplate = ({
   pageContext: { node },
-}: PageProps & { pageContext: { node: BlogPost } }) => {
+}: PageProps<any, { node: BlogPost }>): React.ReactElement<any, any> | null => {
   const { frontmatter, html } = node;
+  if (!frontmatter || !html) return null;
+
   const { title, author, date } = frontmatter;
+  if (!title || !author || !date) return null;
+
   return (
     <React.Fragment>
       <ContentTitle>{title}</ContentTitle>
@@ -30,4 +34,4 @@ const Template = ({
   );
 };
 
-export default withPageLayout(Template);
+export default withPageLayout(BlogTemplate);

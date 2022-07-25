@@ -1,12 +1,11 @@
-import React, { ComponentType } from "react";
+import React from "react";
 import NavHeader from "../components/nav-header";
 import styled, { createGlobalStyle } from "styled-components";
 import { Helmet } from "react-helmet";
-import { Location } from "history";
+import { PageProps } from "gatsby";
 
 type PageLayoutProps = {
   title: string;
-  location: Location;
   children?: React.ReactNode;
 };
 
@@ -30,26 +29,33 @@ const Content = styled.div`
   align-items: center;
 `;
 
-const PageLayout = ({ title, location, children }: PageLayoutProps) => {
+const PageLayout = ({
+  title,
+  children,
+  ...rest
+}: PageLayoutProps & Omit<PageProps, "children">) => {
   return (
     <main>
       <Helmet defer={false}>
         <title>{title}</title>
       </Helmet>
       <GlobalStyle />
-      <NavHeader location={location} />
+      <NavHeader {...(rest as PageProps)} />
       <Content>{children}</Content>
     </main>
   );
 };
 
 export function withPageLayout<P>(
-  Component: ComponentType<P>
-): ComponentType<P & PageLayoutProps> {
-  const WithLayout = ({ title, location, ...rest }) => {
+  Component: React.ComponentType<P>
+): React.ComponentType<P & PageLayoutProps & PageProps> | null {
+  const WithLayout: React.ComponentType<P & PageLayoutProps & PageProps> = ({
+    title,
+    ...rest
+  }): React.ReactElement<any, any> | null => {
     return (
-      <PageLayout title={title} location={location}>
-        <Component {...rest} />
+      <PageLayout title={title} {...(rest as PageProps)}>
+        <Component {...(rest as P)} />
       </PageLayout>
     );
   };

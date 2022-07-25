@@ -1,5 +1,4 @@
 import path from "path";
-import { BlogPostQueryResult } from "./src/types";
 import { GatsbyNode } from "gatsby";
 import { blogPath } from "./src/utils/blog-path";
 
@@ -10,36 +9,38 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   const { createPage } = actions;
 
-  const blogPosts: BlogPostQueryResult = await graphql(`
-    query allBlogPosts {
-      allMarkdownRemark {
-        nodes {
-          html
-          frontmatter {
-            author
-            date
-            slug
-            title
-            published
+  const blogPosts: { errors?: any; data?: Queries.AllBlogPostsQuery } =
+    await graphql(`
+      query AllBlogPosts {
+        allMarkdownRemark {
+          nodes {
+            html
+            frontmatter {
+              author
+              date
+              slug
+              title
+              published
+            }
+            excerpt
           }
-          excerpt
         }
       }
-    }
-  `);
+    `);
 
-  if (blogPosts.error) {
+  if (blogPosts.errors) {
     reporter.panicOnBuild(
-      `Error while running GraphQL query: ${blogPosts.error}`
+      `Error while running GraphQL query: ${blogPosts.errors}`
     );
     return;
   }
 
-  const blogLayout = path.resolve("src/components/blog-layout.tsx");
+  const blogLayout = path.resolve("src/components/blog-template.tsx");
 
   blogPosts?.data?.allMarkdownRemark?.nodes?.forEach((node) => {
+    if (!node.frontmatter) return;
     const { date, slug, published } = node.frontmatter;
-    if (!slug || !published) return;
+    if (!date || !slug || !published) return;
 
     const path = blogPath(date, slug);
     reporter.info(`path: ${path}`);

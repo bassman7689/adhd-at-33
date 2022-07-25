@@ -1,19 +1,11 @@
 export type BlogPost = {
-  html?: string;
-  frontmatter: {
-    author?: string;
-    date?: Date;
-    slug?: string;
-    title?: string;
-  };
-  excerpt?: string;
-};
-
-export type BlogPostQueryResult = {
-  error?: any;
-  data?: {
-    allMarkdownRemark: {
-      nodes: BlogPost[];
-    };
-  };
+  readonly frontmatter: {
+    readonly author: string | null;
+    readonly date: string | null;
+    readonly slug: string | null;
+    readonly title: string | null;
+    readonly published: boolean | null;
+  } | null;
+  readonly html: string | null;
+  readonly excerpt: string | null;
 };

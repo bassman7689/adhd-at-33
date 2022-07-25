@@ -4,13 +4,14 @@ import { graphql, PageProps } from "gatsby";
 import { withPageLayout } from "../components/with-page-layout";
 
 type BlogEntrySummaryProps = {
-  frontmatter: {
-    date: string | null;
-    slug: string | null;
-    title: string | null;
-    published: boolean | null;
+  key: string;
+  readonly frontmatter: {
+    readonly date: string | null;
+    readonly slug: string | null;
+    readonly title: string | null;
+    readonly published: boolean | null;
   } | null;
-  excerpt: string | null;
+  readonly excerpt: string | null;
 };
 
 const BlogEntrySummary = ({ frontmatter, excerpt }: BlogEntrySummaryProps) => {
@@ -29,7 +30,7 @@ const BlogEntrySummary = ({ frontmatter, excerpt }: BlogEntrySummaryProps) => {
   );
 };
 
-const Blog = ({ data }: PageProps<Queries.BlogQuery>) => {
+const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
   const { nodes } = data?.allMarkdownRemark;
   return (
     <React.Fragment>
@@ -41,13 +42,14 @@ const Blog = ({ data }: PageProps<Queries.BlogQuery>) => {
 };
 
 export const pageQuery = graphql`
-  query Blog {
+  query IndexPage {
     allMarkdownRemark {
       nodes {
         frontmatter {
           date
           slug
           title
+          published
         }
         excerpt
       }
@@ -55,4 +57,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default withPageLayout(Blog);
+export default withPageLayout(IndexPage);

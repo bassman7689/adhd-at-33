@@ -49,7 +49,7 @@ const NavLink = styled.a`
     84,
     118,
     255,
-    ${({ active }) => (active ? "0.2" : "0.0")}
+    ${({ active }: { active: boolean }) => (active ? "0.2" : "0.0")}
   );
 
   &:hover {
@@ -97,7 +97,9 @@ const Header = styled.div`
   position: sticky;
 `;
 
-const NavHeader = ({ location }: PageProps): React.ReactNode => {
+const NavHeader = ({
+  location,
+}: PageProps): React.ReactElement<any, any> | null => {
   const data = useStaticQuery(graphql`
     query LinksQuery {
       site {
