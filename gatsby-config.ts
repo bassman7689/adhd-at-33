@@ -39,6 +39,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/blog`,
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: `${__dirname}/src/images`,
+      },
+    },
     "gatsby-transformer-remark",
     {
       resolve: "gatsby-plugin-eslint",
@@ -49,6 +56,9 @@ const config: GatsbyConfig = {
         exclude: ["node_modules", "bower_components", ".cache", "public"],
       },
     },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
   ],
 };
 

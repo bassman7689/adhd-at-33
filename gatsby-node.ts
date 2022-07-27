@@ -12,7 +12,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const blogPosts: { errors?: any; data?: Queries.AllBlogPostsQuery } =
     await graphql(`
       query AllBlogPosts {
-        allMarkdownRemark {
+        allMarkdownRemark(sort: { fields: [frontmatter___date], order: ASC }) {
           nodes {
             html
             frontmatter {
@@ -21,6 +21,13 @@ export const createPages: GatsbyNode["createPages"] = async ({
               slug
               title
               published
+              hero_image_alt
+              hero_image_credit_content
+              hero_image {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
             excerpt
           }

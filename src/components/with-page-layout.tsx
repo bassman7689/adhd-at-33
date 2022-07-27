@@ -10,10 +10,15 @@ type PageLayoutProps = {
 };
 
 const GlobalStyle = createGlobalStyle`
+:root {
+  --background-color: 240, 240, 240;
+  --background-shadow-color: 220, 220, 220;
+}
+
 body {
   width: 100%;
   margin: 0;
-  background-color: #F0F0F0;
+  background-color: rgb(var(--background-color));
 }
 
 * {

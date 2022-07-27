@@ -92,9 +92,9 @@ const Header = styled.div`
   height: 3rem;
   width: 100%;
   background: linear-gradient(to bottom right, #0d33d0, #1f48f1);
-  // background-color: #0D33D0;
   top: 0;
   position: sticky;
+  z-index: 1;
 `;
 
 const NavHeader = ({

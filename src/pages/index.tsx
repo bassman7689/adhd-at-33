@@ -1,4 +1,5 @@
 import React from "react";
+import { Card } from "../components/card";
 import { blogPath } from "../utils/blog-path";
 import { graphql, PageProps } from "gatsby";
 import { withPageLayout } from "../components/with-page-layout";
@@ -23,10 +24,10 @@ const BlogEntrySummary = ({ frontmatter, excerpt }: BlogEntrySummaryProps) => {
   if (!date || !slug || !title || !published) return null;
 
   return (
-    <div>
+    <Card>
       <a href={blogPath(date, slug)}>{title}</a>
       <p>{excerpt ? excerpt : <br />}</p>
-    </div>
+    </Card>
   );
 };
 
