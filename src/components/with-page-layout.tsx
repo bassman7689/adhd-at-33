@@ -13,12 +13,16 @@ const GlobalStyle = createGlobalStyle`
 :root {
   --background-color: 240, 240, 240;
   --background-shadow-color: 220, 220, 220;
+
+  --caption-font-size: 8px;
 }
 
 body {
   width: 100%;
   margin: 0;
   background-color: rgb(var(--background-color));
+  font-family: monospaced;
+  font-size: 16px;
 }
 
 * {

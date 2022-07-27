@@ -25,7 +25,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
               hero_image_credit_content
               hero_image {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(width: 800, layout: FIXED)
                 }
               }
             }

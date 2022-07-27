@@ -1,22 +1,28 @@
 import * as React from "react";
 import { IGatsbyImageData, GatsbyImage } from "gatsby-plugin-image";
+import styled from "styled-components";
+
+const CaptionDiv = styled.div`
+  font-size: var(--caption-font-size);
+  text-align: center;
+`;
 
 const HeroImage = ({
   image,
   alt,
-  credit_content,
+  creditContent,
+  style,
 }: {
   image: IGatsbyImageData;
   alt: string;
-  credit_content: string;
+  creditContent: string;
+  style: React.CSSProperties;
 }): React.ReactElement<any, any> | null => {
   return (
-    <React.Fragment>
+    <CaptionDiv style={style}>
       <GatsbyImage image={image} alt={alt} />
-      <p>
-        <div dangerouslySetInnerHTML={{ __html: credit_content }} />
-      </p>
-    </React.Fragment>
+      <div dangerouslySetInnerHTML={{ __html: creditContent }} />
+    </CaptionDiv>
   );
 };
 

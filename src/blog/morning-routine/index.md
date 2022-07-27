@@ -1,7 +1,7 @@
 ---
 author: Sean Rodman
 date: 2022-07-22
-title: "Morning routine"
+title: "Morning Routine"
 slug: morning-routine
 hero_image: "./morning-rountine.jpg"
 hero_image_alt: "person holding blue ceramic mug and white magazine"

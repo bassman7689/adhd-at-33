@@ -15,6 +15,12 @@ const AuthorHeader = styled.div`
   color: #888;
 `;
 
+const BlogPostHeroImage = styled(HeroImage)`
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+`;
+
 const BlogTemplate = ({
   pageContext: { node },
 }: PageProps<any, { node: BlogPost }>): React.ReactElement<any, any> | null => {
@@ -46,8 +52,8 @@ const BlogTemplate = ({
       <AuthorHeader>
         By {author} - {formatDate(date)}
       </AuthorHeader>
-      <HeroImage
-        image={hero_image}
+      <BlogPostHeroImage
+        image={hero_image.childImageSharp.gatsbyImageData}
         alt={hero_image_alt}
         credit_content={hero_image_credit_content}
       />
