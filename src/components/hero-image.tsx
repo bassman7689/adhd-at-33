@@ -7,6 +7,10 @@ const CaptionDiv = styled.div`
   text-align: center;
 `;
 
+const ImageContent = styled(GatsbyImage)`
+  margin-bottom: 16px;
+`;
+
 const HeroImage = ({
   image,
   alt,
@@ -19,10 +23,10 @@ const HeroImage = ({
   style: React.CSSProperties;
 }): React.ReactElement<any, any> | null => {
   return (
-    <CaptionDiv style={style}>
-      <GatsbyImage image={image} alt={alt} />
-      <div dangerouslySetInnerHTML={{ __html: creditContent }} />
-    </CaptionDiv>
+    <div style={style}>
+      <ImageContent image={image} alt={alt} />
+      <CaptionDiv dangerouslySetInnerHTML={{ __html: creditContent }} />
+    </div>
   );
 };
 

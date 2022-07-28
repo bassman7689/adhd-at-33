@@ -78,7 +78,7 @@ const BlogEntrySummary = ({ frontmatter, excerpt }: BlogEntrySummaryProps) => {
     };
   };
   return (
-    <Card onClick={handleCardClick(postPath)}>
+    <Card onClick={handleCardClick(postPath)} style={{ cursor: "pointer" }}>
       <BlogHeroImage
         image={hero_image.childImageSharp.gatsbyImageData}
         alt={hero_image_alt}
